@@ -1,100 +1,50 @@
-# DIO - Trilha Java Básico
-www.dio.me
+# Controle de fluxo em Java
 
-#### Autores
-- [Gleyson Sampaio](https://github.com/glysns)
+Solução de um desafio da **Trilha Java Básico da DIO** para praticar entrada pelo terminal, laço `for` e exceções personalizadas.
 
-## Controle de Fluxo - Desafio
+## Como funciona
 
-Vamos exercitar todo o conteúdo apresentado no módulo de Controle de Fluxo codificando o seguinte cenário.
+1. O programa solicita dois números inteiros.
+2. Calcula a diferença entre o segundo e o primeiro.
+3. Imprime uma sequência de 1 até o valor dessa diferença.
+4. Se o primeiro número for maior que o segundo, lança `ParametrosInvalidosException` e exibe uma mensagem.
 
-O sistema deverá receber dois parâmetros via terminal que representarão dois números inteiros, com estes dois números você deverá obter a quantidade de interações (for) e realizar a impressão no console (System.out.print) dos números incrementados, exemplo:
+Exemplo de entrada:
 
-* Se você passar os números 12 e 30, logo teremos uma interação (for) com 18 ocorrências para imprimir os números, exemplo: `"Imprimindo o número 1"`, `"Imprimindo o número 2"` e assim por diante.
-* Se o primeiro parâmetro for MAIOR que o segundo parâmetro, você deverá lançar a exceção customizada chamada de `ParametrosInvalidosException` com a segunda mensagem: "O segundo parâmetro deve ser maior que o primeiro"   
-
-
-1. Crie o projeto `DesafioControleFluxo`
-2. Dentro do projeto, crie a classe `Contador.java` para realizar toda a codificação do nosso programa.
-3. Dentro do projeto, crie a classe `ParametrosInvalidosException` que representará a exceção de negócio no sistema. 
-
-Abaixo temos um trecho de código no qual você poderá seguir alterando as partes que contenham `??`
-
-```java
-public class Contador {
-	public static void main(String[] args) {
-		Scanner terminal = new Scanner(System.in);
-		System.out.println("Digite o primeiro parâmetro");
-		int parametroUm = terminal.??;
-		System.out.println("Digite o segundo parâmetro");
-		int parametroDois = terminal.??;
-		
-		try {
-			//chamando o método contendo a lógica de contagem
-			contar(parametroUm, parametroDois);
-		
-		}catch (? exception) {
-			//imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
-		}
-		
-	}
-	static void contar(int parametroUm, int parametroDois ) throws ParametrosInvalidosException {
-		//validar se parametroUm é MAIOR que parametroDois e lançar a exceção
-		
-		int contagem = parametroDois - parametroUm;
-		//realizar o for para imprimir os números com base na variável contagem
-	}
-}
+```text
+Primeiro parâmetro: 12
+Segundo parâmetro: 15
 ```
 
-# Como eu resolvi esse problema:
+Sequência impressa:
 
-```java
-package desafioControleFluxo;
-import java.util.Scanner;
-
-public class Contador {
-    public static void main(String[] args) {
-        Scanner terminal = new Scanner(System.in);
-        System.out.println("Digite o primeiro parâmetro: ");
-        int parametro1 = terminal.nextInt();
-        System.out.println("Digite o segundo parâmetro: ");
-        int parametro2 = terminal.nextInt();
-        try {
-            //chamando o método contendo a lógica de contagem
-            contar(parametro1, parametro2);
-
-        }catch (ParametrosInvalidosException exception){
-            System.out.println("O segundo parâmetro deve ser maior que o primeiro");
-            return;
-        }
-    }
-    static void contar(int parametro1, int parametro2 ) throws ParametrosInvalidosException {
-        //validar se parametroUm é MAIOR que parametroDois e lançar a exceção
-        if (parametro1 > parametro2) throw new ParametrosInvalidosException();
-
-        int contagem = parametro2 - parametro1;
-
-        //realizar o for para imprimir os números com base na variável contagem
-        for (int i = 1; i <= contagem; i++){
-            System.out.println("Imprimindo o numero " + i);
-        }
-    }
-}
-
+```text
+Imprimindo o numero 1
+Imprimindo o numero 2
+Imprimindo o numero 3
 ```
 
-```java
-package desafioControleFluxo;
+## Como executar
 
-public class ParametrosInvalidosException extends Exception {
-    public static void main(String[] args) {
-    }
-}
+Requer um JDK com `javac` e `java` disponíveis. Na raiz do repositório:
 
+```sh
+git clone https://github.com/JoaoAlencar00/desafioControleDeFluxo.git
+cd desafioControleDeFluxo
+mkdir build
+javac -encoding UTF-8 -d build desafioControleFluxo/*.java
+java -cp build desafioControleFluxo.Contador
 ```
 
+## Estrutura
 
+- `desafioControleFluxo/Contador.java`: leitura dos parâmetros, validação e contagem.
+- `desafioControleFluxo/ParametrosInvalidosException.java`: exceção de negócio.
 
+## Comportamentos atuais
 
+Parâmetros iguais são aceitos e não geram impressões da sequência. O programa trata a ordem inválida dos números, mas não trata texto no lugar de números nem estouro na subtração de inteiros. Não há dependências externas ou testes automatizados no repositório.
 
+## Créditos
+
+Enunciado original da [DIO — Trilha Java Básico](https://www.dio.me/), de [Gleyson Sampaio](https://github.com/glysns). Este repositório registra a implementação do exercício.
